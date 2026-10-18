@@ -68,7 +68,7 @@ alter table public.app_users enable row level security;
 alter table public.activation_codes enable row level security;
 alter table public.app_sessions enable row level security;
 
--- These tables are written through Next.js API routes with the service role key.
+-- These tables are written through Next.js API routes using the server-side Supabase key.
 -- Do not grant anon insert/update permissions here.
 
 -- Atomic registration: claim an activation code and create the account in one

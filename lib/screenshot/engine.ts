@@ -179,6 +179,15 @@ export async function clearAllScreenshots(): Promise<void> {
   saveScreenshotRecords([]);
 }
 
+/** 删除单条截屏记录，并删掉它在媒体库里的图片。 */
+export async function deleteScreenshotRecord(id: string): Promise<void> {
+  const records = loadScreenshotRecords();
+  const target = records.find((item) => item.id === id);
+  if (!target) return;
+  await deleteMediaRef(target.ref);
+  saveScreenshotRecords(records.filter((item) => item.id !== id));
+}
+
 /**
  * 发一条「刚截了你的屏幕」系统通知。
  *
